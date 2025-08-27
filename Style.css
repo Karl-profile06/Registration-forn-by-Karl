@@ -9,9 +9,9 @@ body {
 }
 
 .form-container {
-  width: 600px;
+  width: 500px;
   background: #ffffff;
-  padding: 40px;
+  padding: 20px;
   border: 1px solid #d3c4b3;
   border-radius: 6px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
