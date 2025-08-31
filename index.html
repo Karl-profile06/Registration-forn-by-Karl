@@ -22,7 +22,12 @@
       <input type="text" id="lastName" name="lastName" required>
 
       <label for="suffix">Suffix:</label>
-      <input type="text" id="suffix" name="suffix" placeholder="Jr,Sr,N/A">
+     <select id="suffix" name="suffix" required>
+        <option value="">--Select Suffix--</option>
+        <option value="JR">Jr.</option>
+        <option value="SENIOR">SR</option>
+        <option value="None">None of the above</option>
+      </select>
 
       <label for="contact">Contact Number:</label>
       <input type="tel" id="contact" name="contact" required>
