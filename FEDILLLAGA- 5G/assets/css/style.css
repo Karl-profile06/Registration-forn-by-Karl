@@ -1,0 +1,208 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-style: italic;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(270deg, #b9a47e, #d8c6a7, #b9a47e);
+}
+
+    .form-container {
+    width: 500px;
+    padding: 15px;
+    border: 1px solid #d3c4b3;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    
+    background: linear-gradient(270deg, #a88d62, #c6b087, #a88d62);
+    background-size: 600% 600%;
+    animation: fastBrownPulse 3s ease infinite;
+
+    transition: box-shadow 0.3s, transform 0.2s;
+    }
+
+    .form-container:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+    }
+
+    @keyframes fastBrownPulse {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+    }
+
+    .form-container h1 {
+    margin-bottom: 5px;
+    color: #5a3d2b;
+    }
+
+label {
+  font-size: 14px;
+  color: #5a3d2b;
+  font-weight: bold;
+  margin-bottom: 6px;
+  display: block;
+  text-align: left;
+}
+
+input,
+select {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 5px 10px;
+  font-size: 13px;
+  height: 40px;
+  border: 1px solid #cbb9a8;
+  border-radius: 4px;
+  background-color: #faf8f6;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+input:hover,
+select:hover {
+  border-color: #7a6142;
+  background-color: #fefdfc;
+  box-shadow: 0 0 13px rgba(179, 139, 89, 0.4);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #a97c50;
+  box-shadow: 0 0 10px rgba(169, 124, 80, 0.5);
+  background-color: #fffdfb;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 30px;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+input[type="submit"] {
+  background-color: #4f7942;
+  color: #e6ffe6;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 1;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s, color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #3e5d33;
+  box-shadow: 0 4px 12px rgba(62, 93, 51, 0.6);
+  transform: translateY(-2px);
+  color: #d0f0c0;
+}
+
+input[type="submit"]:active {
+  background-color: #2e3f22;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+  transform: translateY(1px);
+  color: #a9cfa3;
+}
+
+input[type="reset"] {
+  background-color: #a07b2c;
+  color: #fffbe8;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 1;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s, color 0.3s;
+}
+
+input[type="reset"]:hover {
+  background-color: #7d5e23;
+  box-shadow: 0 4px 12px rgba(125, 94, 35, 0.6);
+  transform: translateY(-2px);
+  color: #f3e9c1;
+}
+
+input[type="reset"]:active {
+  background-color: #563e16;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+  transform: translateY(1px);
+  color: #d4c391;
+}
+
+.select-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 12px;
+  width: 100%;
+  border: 1px solid #cbb9a8;
+  border-radius: 4px;
+  background-color: #faf8f6;
+  font-size: 14px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.select-wrapper::after {
+  content: "▼";
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #8b6b4a;
+  font-size: 10px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.select-wrapper:focus-within::after {
+  transform: translateY(-50%) rotate(180deg);
+  color: #5a3d2b;
+}
+
+.select-wrapper select:hover {
+  border-color: #8b6b4a;
+  background-color: #fff9f2;
+  box-shadow: 0 0 8px rgba(139, 107, 74, 0.5);
+}
+
+.select-wrapper select:focus {
+  outline: none;
+  border-color: #5a3d2b;
+  background-color: #fffdfb;
+  box-shadow: 0 0 10px rgba(90, 61, 43, 0.6);
+}
+
+.error-message {
+  color: #d9534f;
+  font-size: 12px;
+  margin-top: -8px;
+  margin-bottom: 10px;
+  min-height: 16px;
+  text-align: left;
+}
