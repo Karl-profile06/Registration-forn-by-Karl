@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h1>Registration Form</h1>
+    
+    <form id="regForm">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" required />
+      <div class="error-message" id="error-firstName"></div>
+
+      <label for="middleName">Middle Name:</label>
+      <input type="text" id="middleName" name="middleName" />
+      <div class="error-message" id="error-middleName"></div>
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" required />
+      <div class="error-message" id="error-lastName"></div>
+
+      <label for="suffix">Suffix:</label>
+      <div class="select-wrapper">
+        <select id="suffix" name="suffix" required>
+          <option value="">Select Suffix</option>
+          <option value="JR">Jr.</option>
+          <option value="SENIOR">SR</option>
+          <option value="theSecond">||</option>
+          <option value="None">N/A</option>
+        </select>
+      </div>
+
+      <label for="contact">Contact Number:</label>
+      <input type="tel" id="contact" name="contact" required />
+      <div class="error-message" id="error-contact"></div>
+
+      <label for="email">Gmail:</label>
+      <input type="email" id="email" name="email" required />
+      <div class="error-message" id="error-email"></div>
+
+      <label for="batch">Batch:</label>
+      <div class="select-wrapper">
+        <select id="batch" name="batch" required>
+          <option value="">Select Batch</option>
+          <option value="32">32</option>
+          <option value="33">33</option>
+          <option value="34">34</option>
+        </select>
+      </div>
+
+      <label for="technology">Technology:</label>
+      <div class="select-wrapper">
+        <select id="technology" name="technology" required>
+          <option value="">Select Technology</option>
+          <option value="computer">Computer</option>
+          <option value="electrical">Electrical</option>
+          <option value="electronics">Electronics</option>
+          <option value="mechanical">Mechanical</option>
+        </select>
+      </div>
+
+      <label for="idNumber">Student's ID Number:</label>
+      <input
+        type="text"
+        id="idNumber"
+        name="idNumber"
+        required
+        placeholder="Year-Batch-IDNumber"
+      />
+      <div class="error-message" id="error-idNumber"></div>
+
+
+      <div class="buttons">
+        <input id="reset" type="reset" value="Clear" />
+        <input id="submit" type="submit" value="Submit" />
+      </div>
+    </form>
+  </div>
+
+
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
