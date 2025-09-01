@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     if (valid) {
-      window.location.href = 'Home.html';
+      href = 'Home.html';
     }
   });
 
@@ -87,3 +87,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
