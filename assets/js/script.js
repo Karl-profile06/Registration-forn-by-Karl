@@ -1,90 +1,108 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('regForm');
 
-
-  const firstName = document.getElementById('firstName');
-  const middleName = document.getElementById('middleName');
-  const lastName = document.getElementById('lastName');
-  const contact = document.getElementById('contact');
-  const email = document.getElementById('email');
-  const idNumber = document.getElementById('idNumber');
+  
+  const fields = {
+    firstName: document.getElementById('firstName'),
+    middleName: document.getElementById('middleName'),
+    lastName: document.getElementById('lastName'),
+    contact: document.getElementById('contact'),
+    email: document.getElementById('email'),
+    idNumber: document.getElementById('idNumber'),
+    suffix: document.getElementById('suffix'),
+    batch: document.getElementById('batch'),
+    technology: document.getElementById('technology')
+  };
 
   
-  const errorFirstName = document.getElementById('error-firstName');
-  const errorMiddleName = document.getElementById('error-middleName');
-  const errorLastName = document.getElementById('error-lastName');
-  const errorContact = document.getElementById('error-contact');
-  const errorEmail = document.getElementById('error-email');
-  const errorIdNumber = document.getElementById('error-idNumber');
+  const errors = {
+    firstName: document.getElementById('error-firstName'),
+    middleName: document.getElementById('error-middleName'),
+    lastName: document.getElementById('error-lastName'),
+    contact: document.getElementById('error-contact'),
+    email: document.getElementById('error-email'),
+    idNumber: document.getElementById('error-idNumber')
+  };
 
   
-  const namePattern = /^[A-Z][a-zA-Z\s'-]*$/;
-  const contactPattern = /^\d{11}$/;
-  const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-  const idPattern = /^\d{4}-\d{2}-\d{3}$/; 
-  form.addEventListener('submit', function (event) {
-    event.preventDefault(); 
-   
-    errorFirstName.textContent = '';
-    errorMiddleName.textContent = '';
-    errorLastName.textContent = '';
-    errorContact.textContent = '';
-    errorEmail.textContent = '';
-    errorIdNumber.textContent = '';
+  const patterns = {
+    name: /^[A-Z][a-zA-Z\s'-]*$/,           // Capital letter, letters only
+    contact: /^\d{11}$/,                    // Exactly 11 digits
+    gmail: /^[a-zA-Z0-9._%+-]+@gmail\.com$/, // Must be Gmail
+    id: /^\d{4}-\d{2}-\d{3}$/               // Format YYYY-BB-NNN
+  };
 
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
     let valid = true;
 
     
-    if (!namePattern.test(firstName.value.trim())) {
-      errorFirstName.textContent = 'Must start with a capital letter and contain only letters.';
+    Object.values(errors).forEach(el => el.textContent = '');
+
+  
+    if (!patterns.name.test(fields.firstName.value.trim())) {
+      errors.firstName.textContent = 'Start with a capital letter, letters only.';
       valid = false;
     }
 
     
-    if (middleName.value.trim() !== '' && !namePattern.test(middleName.value.trim())) {
-      errorMiddleName.textContent = 'Must start with a capital letter and contain only letters.';
+    if (fields.middleName.value.trim() !== '' &&
+        !patterns.name.test(fields.middleName.value.trim())) {
+      errors.middleName.textContent = 'Start with a capital letter, letters only.';
       valid = false;
     }
 
-   
-    if (!namePattern.test(lastName.value.trim())) {
-      errorLastName.textContent = 'Must start with a capital letter and contain only letters.';
+  
+    if (!patterns.name.test(fields.lastName.value.trim())) {
+      errors.lastName.textContent = 'Start with a capital letter, letters only.';
+      valid = false;
+    }
+
+  
+    if (!patterns.contact.test(fields.contact.value.trim())) {
+      errors.contact.textContent = 'Contact must be exactly 11 digits.';
+      valid = false;
+    }
+    
+    
+    if (!patterns.gmail.test(fields.email.value.trim())) {
+      errors.email.textContent = 'Enter a valid Gmail (e.g., name@gmail.com).';
       valid = false;
     }
 
     
-    if (!contactPattern.test(contact.value.trim())) {
-      errorContact.textContent = 'Contact Number must be exactly 11 digits.';
-      valid = false;
-    }
-
-   
-    if (!gmailPattern.test(email.value.trim())) {
-      errorEmail.textContent = 'Please enter a valid Gmail address (e.g., name@gmail.com).';
-      valid = false;
-    }
-
-    
-    if (!idPattern.test(idNumber.value.trim())) {
-      errorIdNumber.textContent = 'Format must be YYYY-BB-NNN (e.g., 2023-33-123).';
+    if (!patterns.id.test(fields.idNumber.value.trim())) {
+      errors.idNumber.textContent = 'Format: YYYY-BB-NNN (e.g., 2023-33-123).';
       valid = false;
     }
 
     
     if (valid) {
-      href = 'Home.html';
+      const studentData = {
+        firstName: fields.firstName.value.trim(),
+        middleName: fields.middleName.value.trim(),
+        lastName: fields.lastName.value.trim(),
+        suffix: fields.suffix.value,
+        contact: fields.contact.value.trim(),
+        email: fields.email.value.trim(),
+        batch: fields.batch.value,
+        technology: fields.technology.value,
+        idNumber: fields.idNumber.value.trim()
+      };
+
+      
+      let students = JSON.parse(localStorage.getItem("students")) || [];
+      students.push(studentData);
+      localStorage.setItem("students", JSON.stringify(students));
+
+      
+      alert("✅ Registration successful! Redirecting to homepage...");
+      window.location.href = 'home.html';
     }
   });
 
   
   document.getElementById('reset').addEventListener('click', () => {
-    errorFirstName.textContent = '';
-    errorMiddleName.textContent = '';
-    errorLastName.textContent = '';
-    errorContact.textContent = '';
-    errorEmail.textContent = '';
-    errorIdNumber.textContent = '';
+    Object.values(errors).forEach(el => el.textContent = '');
   });
-
 });
-
