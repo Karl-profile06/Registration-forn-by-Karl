@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       
       alert("✅ Registration successful! Redirecting to homepage...");
-      window.location.href = 'home.html';
+      window.location.href = 'Home.html';
     }
   });
 
@@ -106,3 +106,4 @@ document.addEventListener('DOMContentLoaded', () => {
     Object.values(errors).forEach(el => el.textContent = '');
   });
 });
+
