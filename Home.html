@@ -3,46 +3,152 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Homepage</title>
+  <title>Student Dashboard</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: white;
+      background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      height: 100vh;
-      position: relative;
+      padding: 20px;
     }
 
     a.back-link {
-      position: absolute;
-      top: 20px;
-      left: 20px;
+      align-self: flex-start;
+      margin-bottom: 20px;
       text-decoration: none;
-      color: #b4953b;
+      color: white;
       font-weight: bold;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: 0.3s;
     }
 
     a.back-link:hover {
-      color: #f3d27a;
+      background: rgba(255, 255, 255, 0.4);
     }
 
     h1 {
-      font-size: 80px;
-      background: linear-gradient(90deg, #b4953b, #f3d27a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin: 0;
-      user-select: none;
+      font-size: 28px;
+      color: white;
+      margin-bottom: 15px;
       text-align: center;
+    }
+
+    table {
+      width: 95%; 
+      max-width: 850px;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-in-out;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background: #3a7bd5;
+      color: white;
+      font-size: 15px;
+    }
+
+    tr:hover {
+      background: #f0f8ff;
+    }
+
+    .controls {
+      margin: 15px 0;
+    }
+
+    button.clear-btn {
+      padding: 8px 14px;
+      background: #ff4d4d;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 14px;
+    }
+
+    button.clear-btn:hover {
+      background: #cc0000;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-
 <body>
-  <a href="index.html" class="back-link">Back</a>
-  <h1>REGISTRATION SUCCESSFUL</h1>
+  <a href="index.html" class="back-link">⬅ Back</a>
+  <h1>Student Dashboard</h1>
+
+  <div class="controls">
+    <button class="clear-btn" id="clearAll">Clear All</button>
+  </div>
+
+  <table id="studentTable">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Suffix</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Batch</th>
+        <th>Technology</th>
+        <th>ID Number</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+    </tbody>
+  </table>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const students = JSON.parse(localStorage.getItem("students")) || [];
+      const tbody = document.querySelector("#studentTable tbody");
+
+      if (students.length > 0) {
+        tbody.innerHTML = students.map(student => {
+          const fullName = `${student.firstName} ${student.middleName} ${student.lastName}`.trim();
+          return `
+            <tr>
+              <td>${fullName}</td>
+              <td>${student.suffix}</td>
+              <td>${student.contact}</td>
+              <td>${student.email}</td>
+              <td>${student.batch}</td>
+              <td>${student.technology}</td>
+              <td>${student.idNumber}</td>
+            </tr>
+          `;
+        }).join("");
+      } else {
+        tbody.innerHTML = `<tr><td colspan="7">No registered students yet.</td></tr>`;
+      }
+  
+      document.getElementById("clearAll").addEventListener("click", () => {
+        if (confirm("Are you sure you want to clear all registered students?")) {
+          localStorage.removeItem("students");
+          location.reload();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
